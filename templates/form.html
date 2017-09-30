@@ -1,0 +1,94 @@
+<style>
+    html {
+        background-color: #fafafa
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #555;
+        font-size: 16px;
+        margin: 2em auto;
+        max-width: 800px;
+        padding: 1em;
+        line-height: 1.4;
+        text-align: justify
+    }
+    a {
+        color: #07a
+    }
+    a:visited {
+        color: #941352
+    }
+    .wrapper iframe {
+        position: absolute;
+        /*top: 0;*/
+        left: 1%;
+        width: 98%;
+        height: 100%;
+        font-size: 3px;
+    }
+
+    iframe {
+        border: none;
+    }
+</style>
+
+<form action="/asciified/" class="ascii-form" target="asciiframe" method="post" enctype="multipart/form-data" name="asciiform">
+    upload file:
+        <input type="file" name="file" id="file">
+    or enter link to image:
+        <input type="text" name="imagelink" id="imagelink" value="https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg">
+    <br><br>
+
+    <label for="charwidth" style="display: inline-block; width: 20%">width (characters): </label>
+    <input type="text" name="charwidthtext" id="charwidthtext" for="charwidth"
+        value="150" oninput="charwidth.value=charwidthtext.value" style="width: 40px"/>
+    <input type="range" min="40" max="1000" step="1" value="150"
+        name="charwidth" id="charwidth"
+        oninput="charwidthtext.value=charwidth.value"
+        onchange="charwidthtext.value=charwidth.value"/>
+    <br><br>
+
+    <label for="brightness" style="display: inline-block; width: 20%">brightness: </label>
+    <input type="text" name="brightnesstext" id="brightnesstext" for="brightness"
+        value="3" oninput="brightness.value=brightnesstext.value" style="width: 40px"/>
+    <input type="range" min=".1" max="5" step=".1" value="3"
+        name="brightness" id="brightness"
+        oninput="brightnesstext.value=brightness.value"
+        onchange="brightnesstext.value=brightness.value"/>
+    <br><br>
+
+    <label for="fontsize" style="display: inline-block; width: 20%">font size: </label>
+    <input type="text" name="fontsizetext" id="fontsizetext" for="fontsize"
+        value="9" oninput="fontsize.value=fontsizetext.value" style="width: 40px"/>
+    <input type="range" min="1" max="20" step="1" value="9"
+        name="fontsize" id="fontsize"
+        oninput="fontsizetext.value=fontsize.value"
+        onchange="fontsizetext.value=fontsize.value"/>
+    <input type="submit" value="Submit" style="visibility: hidden;">
+</form>
+
+<hr>
+
+<div class="wrapper">
+<iframe name="asciiframe" style="border"></iframe>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $('.ascii-form').closest('form').find('input[type=submit]').click()
+
+    $(document).ready(function() {
+        $('.ascii-form').on('change', function() {
+            var $form = $(this).closest('form');
+            $form.find('input[type=submit]').click();
+        });
+    });
+
+    $('#imagelink').on('change', function() {
+        $("#file").replaceWith($("#file").val('').clone(true));
+    });
+
+    $('#file').on('change', function() {
+        $("#imagelink").replaceWith($("#imagelink").val('').clone(true));
+    });
+</script>
