@@ -1,6 +1,6 @@
 <style>
     html {
-        background-color: #fafafa
+        background-color: #fff
     }
     body {
         font-family: Arial, Helvetica, sans-serif;
@@ -29,13 +29,72 @@
     iframe {
         border: none;
     }
+
+    a img
+    {
+      border: 0 none;
+    }
+    .image-link
+    {
+      text-decoration: none;
+    }
+
+    .container {
+      position: relative;
+      width: 50px;
+    }
+
+    /*.image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }*/
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      /*width: 100%;*/
+      opacity: 0;
+      transition: .4s ease;
+      background-color: #008CBA;
+    }
+
+    .container:hover .overlay {
+      opacity: 1;
+    }
+
+    .text {
+      color: white;
+      font-size: 14px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
 </style>
+
+<title>Asciify This!</title>
+
+<h2>Asciify This!<div style="font-size:14px">Turn any image into ascii art.</div></h2>
 
 <form action="/asciified/" class="ascii-form" target="asciiframe" method="post" enctype="multipart/form-data" name="asciiform">
     upload file:
         <input type="file" name="file" id="file">
     or enter link to image:
         <input type="text" name="imagelink" id="imagelink" value="https://raw.githubusercontent.com/kbrose/asciify/master/imgs/bridgehouse.png">
+    <a href="https://github.com/kbrose/asciify" class="image-link" style="float: right;">
+        <div class=container>
+            <img src="https://raw.githubusercontent.com/kbrose/asciify/a865cd10592ff86f32951a53db50aef4388e9dcd/imgs/GitHub-Mark-64px.png" alt="See this on GitHub!" class="image" width="50px">
+            <div class="overlay">
+                <div class="text">GitHub</div>
+            </div>
+        </div>
+    </a>
     <br><br>
 
     <label for="charwidth" style="display: inline-block; width: 20%">width (characters): </label>
