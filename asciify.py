@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import division
 
 import sys
@@ -12,7 +14,7 @@ CHARS = np.asarray(list(CHARS))
 def asciify(image_or_filename,
             width,
             brightness,
-            height_multiplier=0.5175,
+            height_multiplier=0.7245,
             chars=CHARS,
             to='html',
             fontsize=8):
@@ -25,14 +27,17 @@ def asciify(image_or_filename,
     img = np.sum(np.asarray(img.resize(S)), axis=2)
     img -= img.min()
     img = ((1.0 - img/float(img.max())) ** brightness) * (len(chars)-1)
+    img = img.astype(int)
 
     if to == 'html':
-        txt = '<div style="text-align:center"><pre style="font-size:{}">{}</pre></div>'.format(
+        txt = '<div style="text-align:center">{}</div>'
+        txt = txt.format('<pre style="font-size:{}; line-height: 1;">{}</pre>')
+        txt = txt.format(
             fontsize,
-            cgi.escape("\n".join(("".join(r) for r in chars[img.astype(int)])))
+            cgi.escape("\n".join(("".join(r) for r in chars[img])))
         )
     elif to == 'ascii':
-        txt = '\n'.join(("".join(r) for r in chars[img.astype(int)]))
+        txt = '\n'.join(("".join(r) for r in chars[img]))
     else:
         raise ValueError('Input "to" must be one of "html" or "ascii"')
 
@@ -40,7 +45,7 @@ def asciify(image_or_filename,
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
-        print('Usage: ./asciinator.py image width factor height-multiplier');
+        print('Usage: python asciify.py image width brightness height-multiplier');
         sys.exit()
-    f, SC, GCF, H = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4])
-    print(asciify(f, SC, GCF, H, to='ascii'))
+    f, SC, B, H = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4])
+    print(asciify(f, SC, B, H, to='ascii'))
