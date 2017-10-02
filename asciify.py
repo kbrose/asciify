@@ -14,7 +14,7 @@ CHARS = np.asarray(list(CHARS))
 def asciify(image_or_filename,
             width,
             brightness,
-            height_multiplier=0.7245,
+            height_multiplier=0.6,
             chars=CHARS,
             to='html',
             fontsize=8):
