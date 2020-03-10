@@ -3,7 +3,7 @@ click==6.7
 Flask==1.0
 gunicorn==19.5.0
 itsdangerous==0.24
-Jinja2
+Jinja2==2.11.1
 MarkupSafe==1.0
 numpy==1.13.1
 olefile==0.44
