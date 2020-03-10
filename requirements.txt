@@ -10,4 +10,4 @@ olefile==0.44
 PasteDeploy==1.5.2
 Pillow==4.2.1
 requests==2.14.2
-Werkzeug==0.12.2
+Werkzeug==0.15.3
