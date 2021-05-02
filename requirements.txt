@@ -8,6 +8,6 @@ MarkupSafe==1.0
 numpy==1.13.1
 olefile==0.44
 PasteDeploy==1.5.2
-Pillow==7.1.0
+Pillow==8.1.1
 requests==2.20.0
 Werkzeug==0.15.3
