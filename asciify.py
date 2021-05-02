@@ -3,7 +3,7 @@
 from __future__ import division
 
 import sys
-import cgi
+import html
 from PIL import Image
 import numpy as np
 
@@ -34,7 +34,7 @@ def asciify(image_or_filename,
         txt = txt.format('<pre style="font-size:{}; line-height: 1;">{}</pre>')
         txt = txt.format(
             fontsize,
-            cgi.escape("\n".join(("".join(r) for r in chars[img])))
+            html.escape("\n".join(("".join(r) for r in chars[img])))
         )
     elif to == 'ascii':
         txt = '\n'.join(("".join(r) for r in chars[img]))

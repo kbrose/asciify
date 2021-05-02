@@ -31,5 +31,6 @@ def asciify_api():
                                to='html',
                                fontsize=float(fr.form['fontsize'])
                                )
-    except Exception:
+    except Exception as e:
+        app.log_exception(e)
         return app.config['error_format'].format('Unknown error occured.')
